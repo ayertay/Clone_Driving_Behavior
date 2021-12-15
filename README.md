@@ -4,38 +4,16 @@
 
 Overview
 ---
-This repository contains starting files for the Behavioral Cloning Project.
 
-In this project, you will use what you've learned about deep neural networks and convolutional neural networks to clone driving behavior. You will train, validate and test a model using Keras. The model will output a steering angle to an autonomous vehicle.
+In this project, I apply deep neural networks and convolutional neural networks to clone driving behavior. I train, validate and test a model using Keras. The model outputs a steering angle to an autonomous vehicle.
 
-We have provided a simulator where you can steer a car around a track for data collection. You'll use image data and steering angles to train a neural network and then use this model to drive the car autonomously around the track.
 
-We also want you to create a detailed writeup of the project. Check out the [writeup template](https://github.com/udacity/CarND-Behavioral-Cloning-P3/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup. The writeup can be either a markdown file or a pdf document.
+Project contains: 
+* model.py - script used to create and train the model)
+* drive.py - script to drive the car
+* model.h5 - a trained Keras model
+* video.mp4 - a video recording of your vehicle driving autonomously around the track for at least one full lap
 
-To meet specifications, the project will require submitting five files: 
-* model.py (script used to create and train the model)
-* drive.py (script to drive the car - feel free to modify this file)
-* model.h5 (a trained Keras model)
-* a report writeup file (either markdown or pdf)
-* video.mp4 (a video recording of your vehicle driving autonomously around the track for at least one full lap)
-
-This README file describes how to output the video in the "Details About Files In This Directory" section.
-
-Creating a Great Writeup
----
-A great writeup should include the [rubric points](https://review.udacity.com/#!/rubrics/432/view) as well as your description of how you addressed each point.  You should include a detailed description of the code used (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
-
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
-
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
-
-The Project
----
-The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior 
-* Design, train and validate a model that predicts a steering angle from image data
-* Use the model to drive the vehicle autonomously around the first track in the simulator. The vehicle should remain on the road for an entire loop around the track.
-* Summarize the results with a written report
 
 ### Dependencies
 This lab requires:
@@ -49,7 +27,7 @@ The following resources can be found in this github repository:
 * video.py
 * writeup_template.md
 
-The simulator can be downloaded from the classroom. In the classroom, we have also provided sample data that you can optionally use to help train your model.
+The simulator can be downloaded from the classroom. In the classroom, Udacity has also provided sample data that can optionally be used to help train model.
 
 ## Details About Files In This Directory
 
@@ -120,6 +98,93 @@ Will run the video at 48 FPS. The default FPS is 60.
 ### Tips
 - Please keep in mind that training images are loaded in BGR colorspace using cv2 while drive.py load images in RGB to predict the steering angles.
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+## Writeup
+
+
+---
+### Files Submitted & Code Quality
+
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
+
+My project includes the following files:
+* model.py containing the script to create and train the model
+* drive.py for driving the car in autonomous mode
+* model.h5 containing a trained convolution neural network 
+* README.md summarizing the results
+
+#### 2. Submission includes functional code
+Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+```sh
+python drive.py model.h5
+```
+
+#### 3. Submission code is usable and readable
+
+The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+
+### Model Architecture and Training Strategy
+
+#### 1. An appropriate model architecture has been employed
+
+Images have been normalized. After that they are cropped to show feed only relevant information of the driving area. In order to augment the data, images have been also flipped.
+
+Architechture used to train the model is described here: https://arxiv.org/pdf/1604.07316v1.pdf \
+Structure is shown below: \
+![NVIDIA CNN](examples/nvidia-cnn.png)\
+
+
+
+#### 2. Attempts to reduce overfitting in the model
+
+In order to reduce overfitting, I added a dropout layer. 
+
+#### 3. Model parameter tuning
+
+The model used Mean Square Error (MSE) loss function an adam optimizer, so the learning rate was not tuned manually.
+
+#### 4. Appropriate training data
+
+Collected training data contains:
+
+1. Driving in the track normally.
+2. Driving in the opposite direction normally.
+3. Recovering the car from undrivable area.
+
+### Model Architecture and Training Strategy
+
+#### 1. Solution Design Approach
+
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+
+To combat the overfitting, I modified the model so that ...
+
+Then I ... 
+
+The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+
+At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+
+The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+
+Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+
+![alt text][image1]
+
+#### 3. Creation of the Training Set & Training Process
+
+To capture good driving behavior, I first recorded one lap on track one using center lane driving. Here is an example image of center lane driving:
+<p align="center">
+  <img src="data/IMG/center_2021_12_12_02_22_31_102.jpg" alt="Normal Driving"/>
+</p>
+
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover when driving off the road. These images show what a recovery looks like:
+<p align="center">
+  <img src="data/IMG/center_2021_12_13_05_57_13_954.jpg" alt="Recover1"/>
+  <img src="data/IMG/center_2021_12_13_05_57_14_772.jpg" alt="Recover2"/>
+  <img src="data/IMG/center_2021_12_13_05_57_15_669.jpg" alt="Recover3"/>
+</p>
+
+After the collection process, I had 9741 number of data points. I then augmented the data, cropped them, shuffled, and split into 80% for training and 20% for validation. 
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z since after that many runs loss haven't decreased. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
