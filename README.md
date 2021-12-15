@@ -174,14 +174,14 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 To capture good driving behavior, I first recorded one lap on track one using center lane driving. Here is an example image of center lane driving:
 <p align="center">
-  <img src="data/IMG/center_2021_12_12_02_22_31_102.jpg" alt="Normal Driving"/>
+  <img src="examples/center_2021_12_12_02_22_57_021.jpg" alt="Normal Driving"/>
 </p>
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover when driving off the road. These images show what a recovery looks like:
 <p align="center">
-  <img src="data/IMG/center_2021_12_13_05_57_13_954.jpg" alt="Recover1"/>
-  <img src="data/IMG/center_2021_12_13_05_57_14_772.jpg" alt="Recover2"/>
-  <img src="data/IMG/center_2021_12_13_05_57_15_669.jpg" alt="Recover3"/>
+  <img src="examples/center_2021_12_13_05_57_14_162.jpg" alt="Recover1"/>
+  <img src="examples/center_2021_12_13_05_57_15_049.jpg" alt="Recover2"/>
+  <img src="examples/center_2021_12_13_05_57_15_943.jpg" alt="Recover3"/>
 </p>
 
 After the collection process, I had 9741 number of data points. I then augmented the data, cropped them, shuffled, and split into 80% for training and 20% for validation. 
