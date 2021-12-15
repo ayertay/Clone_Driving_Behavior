@@ -156,19 +156,10 @@ Collected training data contains:
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-To combat the overfitting, I modified the model so that ...
+To combat the overfitting, I added two dropout layers.
 
-Then I ... 
+Vehicle drove autonomously without falling off the edge. Vehicle drove off in a certain area which was also a road. However, after adding the second dropoff and removing generators, vehcile drove without failure.
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
-
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
@@ -186,5 +177,5 @@ I then recorded the vehicle recovering from the left side and right sides of the
 
 After the collection process, I had 9741 number of data points. I then augmented the data, cropped them, shuffled, and split into 80% for training and 20% for validation. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z since after that many runs loss haven't decreased. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 7 since after that many runs loss haven't decreased. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
